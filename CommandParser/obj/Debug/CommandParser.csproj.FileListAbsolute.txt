@@ -1,0 +1,12 @@
+c:\users\kz\documents\visual studio 2013\Projects\CommandParser\CommandParser\bin\Debug\CommandParser.exe.config
+c:\users\kz\documents\visual studio 2013\Projects\CommandParser\CommandParser\bin\Debug\CommandParser.exe
+c:\users\kz\documents\visual studio 2013\Projects\CommandParser\CommandParser\bin\Debug\CommandParser.pdb
+c:\users\kz\documents\visual studio 2013\Projects\CommandParser\CommandParser\obj\Debug\CommandParser.exe
+c:\users\kz\documents\visual studio 2013\Projects\CommandParser\CommandParser\obj\Debug\CommandParser.pdb
+c:\users\kz\documents\visual studio 2013\Projects\CommandParser\CommandParser\obj\Debug\CommandParser.csprojResolveAssemblyReference.cache
+f:\CommandParser\CommandParser\bin\Debug\CommandParser.exe.config
+f:\CommandParser\CommandParser\obj\Debug\CommandParser.exe
+f:\CommandParser\CommandParser\obj\Debug\CommandParser.pdb
+f:\CommandParser\CommandParser\bin\Debug\CommandParser.exe
+f:\CommandParser\CommandParser\bin\Debug\CommandParser.pdb
+f:\CommandParser\CommandParser\obj\Debug\CommandParser.csprojResolveAssemblyReference.cache
