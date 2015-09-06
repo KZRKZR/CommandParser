@@ -7,7 +7,7 @@ namespace TestConsoleApp
     {
         static void Main(string[] args)
         {
-            
+
             var quit = false;
             //start with args
             List<string> argslist = new List<string>(args);
