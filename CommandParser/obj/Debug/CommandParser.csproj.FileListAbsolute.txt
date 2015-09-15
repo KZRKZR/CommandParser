@@ -10,3 +10,9 @@ f:\CommandParser\CommandParser\obj\Debug\CommandParser.pdb
 f:\CommandParser\CommandParser\bin\Debug\CommandParser.exe
 f:\CommandParser\CommandParser\bin\Debug\CommandParser.pdb
 f:\CommandParser\CommandParser\obj\Debug\CommandParser.csprojResolveAssemblyReference.cache
+D:\My\C# Course\CommandParser\CommandParser\bin\Debug\CommandParser.exe.config
+D:\My\C# Course\CommandParser\CommandParser\obj\Debug\CommandParser.exe
+D:\My\C# Course\CommandParser\CommandParser\obj\Debug\CommandParser.pdb
+D:\My\C# Course\CommandParser\CommandParser\bin\Debug\CommandParser.exe
+D:\My\C# Course\CommandParser\CommandParser\bin\Debug\CommandParser.pdb
+D:\My\C# Course\CommandParser\CommandParser\obj\Debug\CommandParser.csprojResolveAssemblyReference.cache

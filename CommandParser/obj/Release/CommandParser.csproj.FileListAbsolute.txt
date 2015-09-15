@@ -3,3 +3,9 @@ F:\CommandParser\CommandParser\bin\Release\CommandParser.exe
 F:\CommandParser\CommandParser\bin\Release\CommandParser.pdb
 F:\CommandParser\CommandParser\obj\Release\CommandParser.exe
 F:\CommandParser\CommandParser\obj\Release\CommandParser.pdb
+D:\My\C# Course\CommandParser\CommandParser\bin\Release\CommandParser.exe.config
+D:\My\C# Course\CommandParser\CommandParser\obj\Release\CommandParser.exe
+D:\My\C# Course\CommandParser\CommandParser\obj\Release\CommandParser.pdb
+D:\My\C# Course\CommandParser\CommandParser\bin\Release\CommandParser.exe
+D:\My\C# Course\CommandParser\CommandParser\bin\Release\CommandParser.pdb
+D:\My\C# Course\CommandParser\CommandParser\obj\Release\CommandParser.csprojResolveAssemblyReference.cache

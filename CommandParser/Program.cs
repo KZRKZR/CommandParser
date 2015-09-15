@@ -10,123 +10,95 @@ namespace TestConsoleApp
 
             var quit = false;
             //start with args
-            List<string> argslist = new List<string>(args);
-            argslist.Insert(0, "COMMANDPARSER.EXE");
-            Parse(argslist.ToArray(), "");
+            quit = Parse(args);
             // main loop
             while (quit == false)
             {
-             String[] words = new String[0];
-             words=Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-             quit = Parse(words,"");
+             String[] words = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+             quit = Parse(words);
             }
         }
-        public static bool Parse(string[] words, string currentcmd)
+        public static bool Parse(string[] words)
         {
             
             //current word
             string CurrentWord;
-            // int for count params fo option -k
-            int countparams=0;
+            // int for count params fo option -k and -print
+            int countparams;
+            // int for while
+            int i = 0;
             // list of all commands
-            List<string> listcommands = new List<string>(new string[] {"-PING","-PRINT","-K","/?","/HELP","-HELP" });
-           
-            if (words.Length == 0) CurrentWord = ""; 
-            else CurrentWord = words[0].ToUpper();
-
-            switch (CurrentWord)
+            List<string> listcommands = new List<string>(new string[] {"-PING","-PRINT","-K","/?","/HELP","-HELP","-QUIT" });
+            
+            if (words.Length == 0)
             {
-                case "QUIT": return true;
-                case "COMMANDPARSER.EXE":
+                PrintHelp();
+                return false;
+            }
+            else
+            {
+                while (i<=words.Length)
+                {
+                    CurrentWord = words[i].ToUpper();
+                    countparams = 0;
+                    switch (CurrentWord)
                     {
-                        if (words.Length==1)
-                        {
-                            PrintHelp(); return false;
-                        }
-                        else
-                        {
-                            Parse(words.Skip(1).ToArray(), "COMMANDPARSER.EXE"); return false;
-                        }
-                        
-                    }
-                default:
-                    {    
-                    switch (currentcmd)
-                    {
-                        case "":
-                            {
-                                 WriteLineColor("Your input does not contain the name of the program");
-                                 PrintHelp();
-                                 break;
 
-                            }
-                        case "COMMANDPARSER.EXE":
+                        case "-PING":
                             {
-                                switch (CurrentWord)
+                                WriteLineColor("Pinging...");
+                                for (int j = 100; j <= 700; j += 50)
                                 {
-
-                                    case "-PING":
-                                        {
-                                            WriteLineColor("Pinging...");
-                                            for (int i = 100; i <= 700; i += 50)
-                                            {
-                                                Console.Beep(i, 100);
-                                            }
-                                            Parse(words.Skip(1).ToArray(), "COMMANDPARSER.EXE");
-                                            break;
-                                        }
-                                    case "-PRINT": Parse(words.Skip(1).ToArray(), "-PRINT"); break;
-                                    case "-K": Parse(words.Skip(1).ToArray(), "-K"); break;
-                                     // after find help command ignore another commands - don't call Parser() 
-                                    case "": break;
-                                    // if "" the end of comand and parameters 
-                                    case "/?":
-                                    case "/HELP":
-                                    case "-HELP": PrintHelp(); break;
-                                    // default: command is not supported 
-                                    default: WriteLineColor("Command " + CurrentWord + " is not supported, use CommandParser.exe /? to see set of allowed commands"); break;
+                                    Console.Beep(j, 100);
                                 }
+                                if (words.Skip(i + 1).ToArray().Length == 0) return false;
+                                else i++;
                                 break;
                             }
                         case "-PRINT":
                             {
-                                //check if no params=next command
-                                if (listcommands.Contains(CurrentWord))
+                                // count how many params are
+                                while (i+countparams < words.Length - 1 && !listcommands.Contains(words[i+countparams + 1].ToUpper()))
                                 {
-                                    WriteLineColor("-PRINT: Nothing to print! You don't input parametr.");
-                                    Parse(words, "COMMANDPARSER.EXE");
+                                    countparams++;
                                 }
-                                else
-                                {
-                                    WriteLineColor(CurrentWord); Parse(words.Skip(1).ToArray(), "COMMANDPARSER.EXE");
-                                }
-                                break; 
+                                if (countparams == 0) WriteLineColor("-PRINT: Nothing to print! You don't input parameters.");
+                                else WriteLineColor(string.Join(" ", words.Skip(i+1).Take(countparams).ToArray()));
+                                if (words.Skip(i+countparams + 1).ToArray().Length == 0) return false;
+                                else i=i+countparams+1;
+                                break;
                             }
-    
+
                         case "-K":
                             {
                                 // count how many params are
-                                while (countparams< words.Length && !listcommands.Contains(words[countparams].ToUpper()))
+                                while (i+countparams < words.Length - 1 && !listcommands.Contains(words[i+countparams + 1].ToUpper()))
                                 {
                                     countparams++;
                                 }
                                 if (countparams == 0) WriteLineColor("-K: Nothing to print! You don't input key and value.");
-                                for (int i = 0; i < countparams;i=i+2)
+                                for (int j = 0; j < countparams; j = j + 2)
                                 {
-                                    if (i + 1 < countparams) WriteLineColor(words[i] + " - " + words[i + 1]);
-                                    else WriteLineColor(words[i] + " - null");
-                                      
+                                    if (j + 1 < countparams) WriteLineColor(words[i+j + 1] + " - " + words[i+j + 2]);
+                                    else WriteLineColor(words[i+j + 1] + " - null");
+
                                 }
-                                Parse(words.Skip(countparams).ToArray(), "COMMANDPARSER.EXE");
+                                if (words.Skip(i+countparams + 1).ToArray().Length == 0) return false;
+                                else i = i + countparams+1;
                                 break;
                             }
-                        
+                        // after find help command ignore another commands - don't call Parser() 
+                        case "/?":
+                        case "/HELP":
+                        case "-HELP": PrintHelp(); return false;
+                        case "-QUIT": return true;
+                        // default: command is not supported 
+                        default: WriteLineColor("Command " + CurrentWord + " is not supported, use /? to see set of allowed commands"); return false;
+
                     }
-                    return false;
                 }
-                  
+                return false;  
             }
-           
 
         }
         static void WriteLineColor(string value)
@@ -153,7 +125,7 @@ namespace TestConsoleApp
             WriteLineColor("[-k key value] : print table key-value");
             WriteLineColor("[-ping] : beep and print 'Pinging...'");
             WriteLineColor("[-print <print a value>] : print value");
-            WriteLineColor("or 'quit' to exit ");
+            WriteLineColor("or '-quit' to exit ");
         }
 
     }
