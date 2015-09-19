@@ -1,0 +1,7 @@
+F:\CommandParser\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+F:\CommandParser\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+F:\CommandParser\UnitTestProject1\bin\Debug\CommandParser.exe
+F:\CommandParser\UnitTestProject1\bin\Debug\CommandParser.pdb
+F:\CommandParser\UnitTestProject1\obj\Debug\UnitTestCommandParser.csprojResolveAssemblyReference.cache
+F:\CommandParser\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+F:\CommandParser\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
