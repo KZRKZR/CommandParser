@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-namespace TestConsoleApp
+namespace CommandParser
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -58,12 +58,9 @@ namespace TestConsoleApp
                         case "-PRINT":
                             {
                                 // count how many params are
-                                while (i+countparams < words.Length - 1 && !listcommands.Contains(words[i+countparams + 1].ToUpper()))
-                                {
-                                    countparams++;
-                                }
-                                if (countparams == 0) WriteLineColor("-PRINT: Nothing to print! You don't input parameters.");
-                                else WriteLineColor(string.Join(" ", words.Skip(i+1).Take(countparams).ToArray()));
+                                countparams = GetNumberParams(i, words, listcommands);
+                                // print params
+                                WriteLineColor(GetParams(i, countparams, words, CurrentWord));
                                 if (words.Skip(i+countparams + 1).ToArray().Length == 0) return false;
                                 else i=i+countparams+1;
                                 break;
@@ -72,17 +69,9 @@ namespace TestConsoleApp
                         case "-K":
                             {
                                 // count how many params are
-                                while (i+countparams < words.Length - 1 && !listcommands.Contains(words[i+countparams + 1].ToUpper()))
-                                {
-                                    countparams++;
-                                }
-                                if (countparams == 0) WriteLineColor("-K: Nothing to print! You don't input key and value.");
-                                for (int j = 0; j < countparams; j = j + 2)
-                                {
-                                    if (j + 1 < countparams) WriteLineColor(words[i+j + 1] + " - " + words[i+j + 2]);
-                                    else WriteLineColor(words[i+j + 1] + " - null");
-
-                                }
+                                countparams = GetNumberParams(i, words, listcommands);
+                                // print params
+                                WriteLineColor(GetParams(i, countparams, words, CurrentWord));
                                 if (words.Skip(i+countparams + 1).ToArray().Length == 0) return false;
                                 else i = i + countparams+1;
                                 break;
@@ -127,6 +116,43 @@ namespace TestConsoleApp
             WriteLineColor("[-print <print a value>] : print value");
             WriteLineColor("or '-quit' to exit ");
         }
+
+        public static int GetNumberParams(int i, string[] words, List<string> listcommands)
+        {
+            //
+            // This method get number of paramtres for -print and -k
+            //
+            int countparams = 0;
+            while (i + countparams < words.Length - 1 && !listcommands.Contains(words[i + countparams + 1].ToUpper()))
+            {
+                countparams++;
+            }
+            return countparams;
+        }
+        public static string GetParams(int i, int countparams,string[] words,string cmd_key)
+        {
+            string ReturnString="";
+            if (countparams == 0) 
+            ReturnString=cmd_key+": Nothing to print! You don't input parameters.";
+            else
+                if (cmd_key == "-PRINT") ReturnString=string.Join(" ", words.Skip(i + 1).Take(countparams).ToArray());
+                else
+                {
+                    for (int j = 0; j < countparams; j = j + 2)
+                    {
+                        if (j + 1 < countparams)
+                        {
+                            ReturnString = ReturnString + words[i + j + 1] + " - " + words[i + j + 2];
+                            if (j + 2 != countparams) ReturnString = ReturnString + "\n";
+                        }
+                        else ReturnString = ReturnString + words[i + j + 1] + " - null";
+
+                    }
+                }
+            return ReturnString;
+            
+        }
+
 
     }
     
